@@ -30,18 +30,18 @@ async function registerUser(req,res){
             process.env.JWT_SECRET,
             {expiresIn:"1h"}
         )
-        res.cookie("token",token,{
-            httpOnly:true,
-            secure:false,
-            sameSite:"strict",
-            maxAge:1000*60*60*24*7
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: "none",
+            maxAge: 1000 * 60 * 60 * 24 * 7
         })
         res.status(200).json({
             message:"User registered successfully"
         })
     }
     catch(error){
-        res.status(200).json({
+        res.status(500).json({
             message:"ERROR: " + error.message
         })
     }
@@ -76,18 +76,18 @@ async function loginUser(req,res){
             process.env.JWT_SECRET,
             {expiresIn:"1h"}
         )
-        res.cookie("token",token,{
-            httpOnly:true,
-            secure:false,
-            sameSite:"strict",
-            maxAge:1000*60*60*24*7
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: "none",
+            maxAge: 1000 * 60 * 60 * 24 * 7
         })
         res.status(200).json({
             message:"User logged in successfully"
         })
     }
     catch(error){
-        res.status(200).json({
+        res.status(500).json({
             message:"ERROR: " + error.message
         })
     }
