@@ -4,6 +4,7 @@ import Sidebar from '../components/Sidebar';
 import { getAllPosts, getFollowData, getMe } from '../api/api';
 import { useAuth } from '../context/AuthContext';
 import Toast from '../components/Toast';
+import bannerImg from '../assets/banner.png';
 
 export default function Profile() {
   const { user: authUser } = useAuth();
@@ -63,7 +64,9 @@ export default function Profile() {
         <div ref={bannerRef}>
           <div style={{
             height: 180, borderRadius: 20,
-            background: 'var(--bg-secondary)',
+            backgroundImage: `url(${bannerImg})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
             position: 'relative', overflow: 'hidden',
           }}>
           </div>
