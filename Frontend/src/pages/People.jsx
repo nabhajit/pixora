@@ -14,9 +14,12 @@ export default function People() {
 
   const headRef    = useRef(null);
   const listRef    = useRef(null);
+  const searchRef  = useRef(null);
 
   useEffect(() => {
-    gsap.fromTo(headRef.current, { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' });
+    const tl = gsap.timeline();
+    if (headRef.current) tl.fromTo(headRef.current, { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' });
+    if (searchRef.current) tl.fromTo(searchRef.current, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, '-=0.3');
     fetchEverything();
   }, []);
 

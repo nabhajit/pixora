@@ -23,9 +23,9 @@ export default function Profile() {
 
   useEffect(() => {
     const tl = gsap.timeline();
-    tl.fromTo(bannerRef.current, { y: -40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' })
-      .fromTo(statsRef.current,  { y: 20,  opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out' }, '-=0.3')
-      .fromTo(gridRef.current,   { y: 30,  opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out' }, '-=0.2');
+    if (bannerRef.current) tl.fromTo(bannerRef.current, { y: -40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' });
+    if (statsRef.current)  tl.fromTo(statsRef.current,  { y: 20,  opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out' }, '-=0.3');
+    if (gridRef.current)   tl.fromTo(gridRef.current,   { y: 30,  opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out' }, '-=0.2');
     fetchData();
   }, []);
 

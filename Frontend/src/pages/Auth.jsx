@@ -5,30 +5,22 @@ import { registerUser, loginUser } from '../api/api';
 import { useAuth } from '../context/AuthContext';
 import Toast from '../components/Toast';
 
-export default function Auth() {
-  const [mode, setMode] = useState('login'); // 'login' | 'register'
+export default function Auth({ initialMode = 'login' }) {
+  const [mode, setMode] = useState(initialMode); // 'login' | 'register'
   const [form, setForm] = useState({ username: '', email: '', password: '' });
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState(null);
 
   const cardRef  = useRef(null);
   const logoRef  = useRef(null);
-  const blobRef1 = useRef(null);
-  const blobRef2 = useRef(null);
 
   const { login } = useAuth();
   const navigate  = useNavigate();
 
   useEffect(() => {
     const tl = gsap.timeline();
-    tl.fromTo(blobRef1.current, { scale: 0 }, { scale: 1, duration: 1.2, ease: 'power3.out' })
-      .fromTo(blobRef2.current, { scale: 0 }, { scale: 1, duration: 1.2, ease: 'power3.out' }, '-=1')
-      .fromTo(logoRef.current,  { y: -40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: 'back.out(1.7)' }, '-=0.5')
-      .fromTo(cardRef.current,  { y: 60,  opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' }, '-=0.4');
-
-    // Floating blobs
-    gsap.to(blobRef1.current, { y: 30, repeat: -1, yoyo: true, duration: 4, ease: 'sine.inOut' });
-    gsap.to(blobRef2.current, { y: -25, repeat: -1, yoyo: true, duration: 5, ease: 'sine.inOut' });
+    if (logoRef.current) tl.fromTo(logoRef.current,  { y: -40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: 'back.out(1.7)' });
+    if (cardRef.current) tl.fromTo(cardRef.current,  { y: 60,  opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' }, '-=0.4');
   }, []);
 
   const switchMode = () => {

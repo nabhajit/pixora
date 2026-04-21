@@ -23,7 +23,10 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="/login" element={
-            <PublicRoute><Auth /></PublicRoute>
+            <PublicRoute><Auth initialMode="login" /></PublicRoute>
+          } />
+          <Route path="/register" element={
+            <PublicRoute><Auth initialMode="register" /></PublicRoute>
           } />
           <Route path="/feed" element={
             <ProtectedRoute><Feed /></ProtectedRoute>

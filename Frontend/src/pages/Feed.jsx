@@ -13,10 +13,8 @@ export default function Feed() {
   const headRef = useRef(null);
 
   useEffect(() => {
-    gsap.fromTo(headRef.current,
-      { y: -30, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }
-    );
+    const tl = gsap.timeline();
+    if (headRef.current) tl.fromTo(headRef.current, { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' });
     fetchFeed();
   }, []);
 
